@@ -24,6 +24,7 @@ License: 	LGPL
 Group: 		Sound
 Source: 	http://gstreamer.freedesktop.org/src/gst-plugins-ugly/gst-plugins-ugly-%{version}.tar.bz2
 URL:            http://gstreamer.freedesktop.org/
+BuildRoot: 	%{_tmppath}/%{name}-%{version}-root 
 #gw for the pixbuf plugin
 BuildRequires:  gtk+2-devel
 BuildRequires:  glib2-devel >= %_glib2 
