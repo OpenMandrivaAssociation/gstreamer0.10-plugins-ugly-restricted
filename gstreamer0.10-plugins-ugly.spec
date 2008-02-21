@@ -1,5 +1,5 @@
-%define version 0.10.6
-%define release %mkrel 2
+%define version 0.10.7
+%define release %mkrel 1
 %define         _glib2          2.2
 %define major 0.10
 %define majorminor 0.10
@@ -23,7 +23,6 @@ Release: 	%release
 License: 	LGPL
 Group: 		Sound
 Source: 	http://gstreamer.freedesktop.org/src/gst-plugins-ugly/gst-plugins-ugly-%{version}.tar.bz2
-Patch: gst-plugins-ugly-0.10.6-cvs.patch
 URL:            http://gstreamer.freedesktop.org/
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-root 
 #gw for the pixbuf plugin
@@ -60,7 +59,6 @@ This package is in PLF as it violates some patents.
 
 %prep
 %setup -q -n gst-plugins-ugly-%{version}
-%patch -p1
 
 %build
 %configure2_5x --disable-dependency-tracking \
