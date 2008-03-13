@@ -1,5 +1,5 @@
 %define version 0.10.7
-%define release %mkrel 2
+%define release %mkrel 3
 %define         _glib2          2.2
 %define major 0.10
 %define majorminor 0.10
@@ -67,6 +67,13 @@ cd gst/mpegaudioparse/
 
 %build
 %configure2_5x --disable-dependency-tracking \
+%if %build_plf
+  --with-package-name='PLF %name package' \
+  --with-package-origin='http://plf.zarb.org/' \
+%else
+  --with-package-name='Mandriva %name package' \
+  --with-package-origin='http://www.mandriva.com/' \
+%endif
 %if ! %build_lame
 	--disable-lame \
 %endif
