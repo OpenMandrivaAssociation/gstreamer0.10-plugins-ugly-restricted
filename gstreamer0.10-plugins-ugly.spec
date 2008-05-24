@@ -1,5 +1,5 @@
 %define version 0.10.8
-%define release %mkrel 1
+%define release %mkrel 2
 %define         _glib2          2.2
 %define major 0.10
 %define majorminor 0.10
@@ -61,6 +61,9 @@ This package is in PLF as it violates some patents.
 %setup -q -n gst-plugins-ugly-%{version}
 
 %build
+%if %build_plf
+%define _disable_ld_as_needed 1
+%endif
 %configure2_5x --disable-dependency-tracking \
 %if %build_plf
   --with-package-name='PLF %name package' \
