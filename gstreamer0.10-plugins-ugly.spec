@@ -61,9 +61,6 @@ This package is in PLF as it violates some patents.
 %setup -q -n gst-plugins-ugly-%{version}
 
 %build
-%if %build_lame
-%define _disable_ld_as_needed 1
-%endif
 %configure2_5x --disable-dependency-tracking \
 %if %build_plf
   --with-package-name='PLF %name package' \
