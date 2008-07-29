@@ -1,5 +1,5 @@
 %define version 0.10.8
-%define release %mkrel 2
+%define release %mkrel 3
 %define         _glib2          2.2
 %define major 0.10
 %define majorminor 0.10
@@ -20,9 +20,12 @@ Summary: 	GStreamer Streaming-media framework plug-ins
 Name: 		%name
 Version: 	%version
 Release: 	%release
-License: 	LGPL
+License: 	LGPLv2+
 Group: 		Sound
 Source: 	http://gstreamer.freedesktop.org/src/gst-plugins-ugly/gst-plugins-ugly-%{version}.tar.bz2
+#gw from CVS, fix bitrate with lame presets
+# http://bugzilla.gnome.org/show_bug.cgi?id=498004
+Patch: gst-plugins-ugly-fix-lame-bitrate.patch
 URL:            http://gstreamer.freedesktop.org/
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-root 
 #gw for the pixbuf plugin
@@ -59,6 +62,7 @@ This package is in PLF as it violates some patents.
 
 %prep
 %setup -q -n gst-plugins-ugly-%{version}
+%patch -p0
 
 %build
 %configure2_5x --disable-dependency-tracking \
