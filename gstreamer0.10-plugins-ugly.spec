@@ -1,5 +1,5 @@
 %define version 0.10.8
-%define release %mkrel 4
+%define release %mkrel 5
 %define         _glib2          2.2
 %define major 0.10
 %define majorminor 0.10
@@ -28,6 +28,8 @@ Source: 	http://gstreamer.freedesktop.org/src/gst-plugins-ugly/gst-plugins-ugly-
 #gw from CVS, fix bitrate with lame presets
 # http://bugzilla.gnome.org/show_bug.cgi?id=498004
 Patch: gst-plugins-ugly-fix-lame-bitrate.patch
+# (fc) 0.10.8-5mdv ensure translations are encoded in UTF-8
+Patch1: gst-plugins-ugly-0.10.8-utf8.patch
 URL:            http://gstreamer.freedesktop.org/
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-root 
 #gw for the pixbuf plugin
@@ -65,6 +67,7 @@ This package is in PLF as it violates some patents.
 %prep
 %setup -q -n gst-plugins-ugly-%{version}
 %patch -p1
+%patch1 -p1 -b .utf8
 
 %build
 %configure2_5x --disable-dependency-tracking \
