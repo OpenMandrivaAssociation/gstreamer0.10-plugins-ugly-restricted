@@ -7,6 +7,8 @@
 %define name %bname-plugins-ugly
 %define build_plf 0
 %{?_with_plf: %{expand: %%global build_plf 1}}
+%define build_experimental 0
+%{?_with_experimental: %{expand: %%global build_experimental 1}}
 %define build_lame 0
 %define build_amrnb 0
 
@@ -76,6 +78,9 @@ This package is in PLF as it violates some patents.
 %if ! %build_lame
 	--disable-lame \
 %endif
+%if %build_experimental
+	--enable-experimental
+%endif
 
 %make
 
@@ -111,6 +116,9 @@ rm -rf $RPM_BUILD_ROOT
 %_libdir/gstreamer-%majorminor/libgstmpegaudioparse.so
 %_libdir/gstreamer-%majorminor/libgstmpegstream.so
 %_libdir/gstreamer-%majorminor/libgstrmdemux.so
+%if %build_experimental
+%_libdir/gstreamer-%majorminor/libgstsynaesthesia.so
+%endif
 
 %if %build_lame
 ### LAME ###
