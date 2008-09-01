@@ -1,5 +1,5 @@
-%define version 0.10.8
-%define release %mkrel 6
+%define version 0.10.9
+%define release %mkrel 1
 %define         _glib2          2.2
 %define major 0.10
 %define majorminor 0.10
@@ -25,11 +25,6 @@ Release: 	%release
 License: 	LGPLv2+
 Group: 		Sound
 Source: 	http://gstreamer.freedesktop.org/src/gst-plugins-ugly/gst-plugins-ugly-%{version}.tar.bz2
-#gw from CVS, fix bitrate with lame presets
-# http://bugzilla.gnome.org/show_bug.cgi?id=498004
-Patch: gst-plugins-ugly-fix-lame-bitrate.patch
-# (fc) 0.10.8-5mdv ensure translations are encoded in UTF-8
-Patch1: gst-plugins-ugly-0.10.8-utf8.patch
 URL:            http://gstreamer.freedesktop.org/
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-root 
 #gw for the pixbuf plugin
@@ -66,8 +61,6 @@ This package is in PLF as it violates some patents.
 
 %prep
 %setup -q -n gst-plugins-ugly-%{version}
-%patch -p1
-%patch1 -p1 -b .utf8
 
 %build
 %configure2_5x --disable-dependency-tracking \
@@ -187,7 +180,6 @@ Plugin for decoding of VOB files
 %{_libdir}/gstreamer-%{majorminor}/libgsta52dec.so
 
 
-### MPEG2DEC ###
 %package -n %bname-mpeg
 Summary:GStreamer plug-ins for MPEG video playback and encoding
 Group:         Video
@@ -200,5 +192,19 @@ Plug-ins for playing and encoding MPEG video.
 %files -n %bname-mpeg
 %defattr(-, root, root)
 %{_libdir}/gstreamer-%{majorminor}/libgstmpeg2dec.so
+
+%package -n %bname-cdio
+Summary:GStreamer plug-in for audio CD playback
+Group:         Sound
+Requires:      %bname-plugins >= %{version}-%release
+BuildRequires: libcdio-devel
+Conflicts: %bname-plugins-good < 0.10.10
+
+%description -n %bname-cdio
+Plug-in for audio CD playback.
+
+%files -n %bname-cdio
+%defattr(-, root, root)
+%{_libdir}/gstreamer-%{majorminor}/libgstcdio.so
 
 
