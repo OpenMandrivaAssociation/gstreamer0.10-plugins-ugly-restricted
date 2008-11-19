@@ -1,5 +1,5 @@
 %define version 0.10.9
-%define release %mkrel 1
+%define release %mkrel 2
 %define         _glib2          2.2
 %define major 0.10
 %define majorminor 0.10
@@ -25,6 +25,8 @@ Release: 	%release
 License: 	LGPLv2+
 Group: 		Sound
 Source: 	http://gstreamer.freedesktop.org/src/gst-plugins-ugly/gst-plugins-ugly-%{version}.tar.bz2
+# (fhimpe) Patch from upstream cvs: fix seeking in wmv files (bug #45825)
+Patch0:		gst-plugins-ugly-0.10.9-asfdemux-flow-returns.patch
 URL:            http://gstreamer.freedesktop.org/
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-root 
 #gw for the pixbuf plugin
@@ -61,6 +63,7 @@ This package is in PLF as it violates some patents.
 
 %prep
 %setup -q -n gst-plugins-ugly-%{version}
+%patch0 -p0 -b .asfdemux
 
 %build
 %configure2_5x --disable-dependency-tracking \
