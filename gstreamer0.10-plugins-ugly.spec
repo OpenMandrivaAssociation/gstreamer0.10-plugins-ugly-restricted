@@ -1,4 +1,4 @@
-%define version 0.10.10
+%define version 0.10.11
 %define release %mkrel 1
 %define         _glib2          2.2
 %define major 0.10
@@ -208,3 +208,15 @@ Plug-in for audio CD playback.
 %{_libdir}/gstreamer-%{majorminor}/libgstcdio.so
 
 
+%package -n %bname-twolame
+Summary: GStreamer plug-in for MP2 encoding support
+Group:  Sound
+Requires: %bname-plugins >= %{version}
+BuildRequires: libtwolame-devel
+
+%description -n %bname-twolame
+Plug-in for encoding MP2 under GStreamer.
+
+%files -n %bname-twolame
+%defattr(-, root, root)
+%_libdir/gstreamer-%majorminor/libgsttwolame.so
