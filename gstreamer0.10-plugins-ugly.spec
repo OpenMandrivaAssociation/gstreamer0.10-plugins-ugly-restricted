@@ -1,5 +1,5 @@
 %define version 0.10.12
-%define release %mkrel 1
+%define release %mkrel 4
 %define         _glib2          2.2
 %define major 0.10
 %define majorminor 0.10
@@ -11,10 +11,13 @@
 %{?_with_experimental: %{expand: %%global build_experimental 1}}
 %define build_lame 0
 %define build_amrnb 0
+%define build_x264 0
+
 
 %if %build_plf
 %define distsuffix plf
 %define build_lame 1
+%define build_x264 1
 %define build_amrnb 1
 %endif
 
@@ -133,6 +136,21 @@ This package is in PLF as it violates some patents.
 %{_libdir}/gstreamer-%{majorminor}/libgstlame.so
 %endif
 
+%if %build_x264
+%package -n %bname-x264
+Summary:GStreamer plug-in for H264/AVC video encoding
+Group:         Video
+BuildRequires: libx264-devel
+ 
+%description -n %bname-x264
+Plug-in for encoding H264/AVC video.
+ 
+This package is in PLF as it violates some patents.
+%files -n %bname-x264
+%defattr(-, root, root)
+%_libdir/gstreamer-%{majorminor}/libgstx264.so
+%_datadir/gstreamer-%majorminor/presets/GstX264Enc.prs
+%endif
 
 %if %build_amrnb
 %package -n %bname-amrnb
