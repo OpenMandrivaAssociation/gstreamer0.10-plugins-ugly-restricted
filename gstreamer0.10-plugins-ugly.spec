@@ -1,5 +1,5 @@
 %define version 0.10.12
-%define release %mkrel 4
+%define release %mkrel 5
 %define         _glib2          2.2
 %define major 0.10
 %define majorminor 0.10
@@ -39,7 +39,10 @@ BuildRequires: libmesaglu-devel
 BuildRequires: libmad-devel
 BuildRequires: libid3tag-devel
 BuildRequires: libdvdread-devel
-BuildRequires: valgrind libcheck-devel
+%ifnarch %mips %arm
+BuildRequires: valgrind
+%endif
+BuildRequires: libcheck-devel
 Provides:	%bname-audiosrc
 Provides:	%bname-audiosink
 
