@@ -1,5 +1,5 @@
-%define version 0.10.12
-%define release %mkrel 6
+%define version 0.10.13
+%define release %mkrel 1
 %define         _glib2          2.2
 %define major 0.10
 %define majorminor 0.10
@@ -11,6 +11,7 @@
 %{?_with_experimental: %{expand: %%global build_experimental 1}}
 %define build_lame 0
 %define build_amrnb 0
+%define build_amrwbdec 0
 %define build_x264 0
 
 
@@ -19,6 +20,7 @@
 %define build_lame 1
 %define build_x264 1
 %define build_amrnb 1
+%define build_amrwbdec 1
 %endif
 
 Summary: 	GStreamer Streaming-media framework plug-ins
@@ -28,9 +30,7 @@ Release: 	%release
 License: 	LGPLv2+
 Group: 		Sound
 Source: 	http://gstreamer.freedesktop.org/src/gst-plugins-ugly/gst-plugins-ugly-%{version}.tar.bz2
-#gw from git, fix mp3 seeking
-#https://qa.mandriva.com/show_bug.cgi?id=54729
-Patch: gst-plugins-ugly-fix-mp3-seeking.patch
+Patch: gstreamer-plugins-ugly-0.10.12.3-amr-linking.patch
 URL:            http://gstreamer.freedesktop.org/
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-root 
 #gw for the pixbuf plugin
@@ -70,7 +70,8 @@ This package is in PLF as it violates some patents.
 
 %prep
 %setup -q -n gst-plugins-ugly-%{version}
-%patch -p1
+%patch -p1 -b .amr-linking
+autoconf
 
 %build
 %configure2_5x --disable-dependency-tracking \
@@ -164,7 +165,7 @@ This package is in PLF as it violates some patents.
 Summary: GStreamer plug-in for AMR-NB support
 Group:  Sound
 Requires: %bname-plugins >= %{version}
-BuildRequires: libamrnb-devel
+BuildRequires: libopencore-amr-devel
 
 %description -n %bname-amrnb
 Plug-in for decoding AMR-NB under GStreamer.
@@ -173,6 +174,23 @@ This package is in PLF as it violates some patents.
 %files -n %bname-amrnb
 %defattr(-, root, root)
 %{_libdir}/gstreamer-%{majorminor}/libgstamrnb.so
+%_datadir/gstreamer-%majorminor/presets/GstAmrnbEnc.prs
+%endif
+
+%if %build_amrwbdec
+%package -n %bname-amrwbdec
+Summary: GStreamer plug-in for AMR-WB decoding support
+Group:  Sound
+Requires: %bname-plugins >= %{version}
+BuildRequires: libopencore-amr-devel
+
+%description -n %bname-amrwbdec
+Plug-in for decoding AMR-Wb under GStreamer.
+
+This package is in PLF as it violates some patents.
+%files -n %bname-amrwbdec
+%defattr(-, root, root)
+%{_libdir}/gstreamer-%{majorminor}/libgstamrwbdec.so
 %endif
 
 
