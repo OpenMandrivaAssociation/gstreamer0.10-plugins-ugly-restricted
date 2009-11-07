@@ -182,7 +182,7 @@ This package is in PLF as it violates some patents.
 Summary: GStreamer plug-in for AMR-WB decoding support
 Group:  Sound
 Requires: %bname-plugins >= %{version}
-BuildRequires: libopencore-amr-devel
+BuildRequires: opencore-amr-devel
 
 %description -n %bname-amrwbdec
 Plug-in for decoding AMR-Wb under GStreamer.
