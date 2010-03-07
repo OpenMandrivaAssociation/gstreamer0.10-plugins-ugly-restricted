@@ -1,5 +1,5 @@
-%define version 0.10.13
-%define release %mkrel 6
+%define version 0.10.14
+%define release %mkrel 1
 %define         _glib2          2.2
 %define major 0.10
 %define majorminor 0.10
@@ -30,9 +30,7 @@ Release: 	%release
 License: 	LGPLv2+
 Group: 		Sound
 Source: 	http://gstreamer.freedesktop.org/src/gst-plugins-ugly/gst-plugins-ugly-%{version}.tar.bz2
-Patch: gstreamer-plugins-ugly-0.10.12.3-amr-linking.patch
-#gw from git: fix build with new x264
-Patch1: 0a36965808ab9095dd68541f589fd71b66c99ca7.patch
+Patch0: gstreamer-plugins-ugly-0.10.12.3-amr-linking.patch
 URL:            http://gstreamer.freedesktop.org/
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-root 
 #gw for the pixbuf plugin
@@ -72,8 +70,7 @@ This package is in PLF as it violates some patents.
 
 %prep
 %setup -q -n gst-plugins-ugly-%{version}
-%patch -p1 -b .amr-linking
-%patch1 -p1
+%apply_patches
 autoconf
 
 %build
