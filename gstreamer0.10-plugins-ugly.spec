@@ -1,5 +1,5 @@
-%define version 0.10.14
-%define release %mkrel 4
+%define version 0.10.15
+%define release %mkrel 1
 %define         _glib2          2.2
 %define major 0.10
 %define majorminor 0.10
@@ -31,12 +31,6 @@ License: 	LGPLv2+
 Group: 		Sound
 Source: 	http://gstreamer.freedesktop.org/src/gst-plugins-ugly/gst-plugins-ugly-%{version}.tar.bz2
 Patch0: gstreamer-plugins-ugly-0.10.12.3-amr-linking.patch
-#gw patches from git for new x264
-Patch1: 0001-x264enc-pixel-aspect-ratio.patch
-Patch2: 0002-x264enc-parameterize-libx264-provided-nal.patch
-Patch3: 0003-x264enc-fix-up-avcc-header.patch
-Patch4: 0004-x264enc-adaptive-x264-header-nal.patch
-Patch5: 0005-x264end-adaptive-nalu-type-checking.patch
 URL:            http://gstreamer.freedesktop.org/
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-root 
 #gw for the pixbuf plugin
