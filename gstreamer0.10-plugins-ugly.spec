@@ -1,4 +1,4 @@
-%define version 0.10.15
+%define version 0.10.16
 %define release %mkrel 1
 %define         _glib2          2.2
 %define major 0.10
@@ -34,9 +34,9 @@ Patch0: gstreamer-plugins-ugly-0.10.12.3-amr-linking.patch
 URL:            http://gstreamer.freedesktop.org/
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-root 
 #gw for the pixbuf plugin
-BuildRequires:  gtk+2-devel
-BuildRequires:  glib2-devel >= %_glib2 
-BuildRequires: liboil-devel >= 0.3.2
+BuildRequires: gtk+2-devel
+BuildRequires: glib2-devel >= %_glib2 
+BuildRequires: liborc-devel >= 0.4.5
 BuildRequires: libgstreamer-plugins-base-devel >= %version
 BuildRequires: libmesaglu-devel
 BuildRequires: libmad-devel
