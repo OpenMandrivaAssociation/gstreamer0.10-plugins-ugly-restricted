@@ -105,13 +105,13 @@ GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 %makeinstall_std
 %find_lang gst-plugins-ugly-%majorminor
 # Clean out files that should not be part of the rpm.
 # This is the recommended way of dealing with it for RH8
-rm -f $RPM_BUILD_ROOT%{_libdir}/gstreamer-%{majorminor}/*.la
-rm -f $RPM_BUILD_ROOT%{_libdir}/gstreamer-%{majorminor}/*.a
-rm -f $RPM_BUILD_ROOT%{_libdir}/*.a
-rm -f $RPM_BUILD_ROOT%{_libdir}/*.la
+rm -f %{buildroot}%{_libdir}/gstreamer-%{majorminor}/*.la
+rm -f %{buildroot}%{_libdir}/gstreamer-%{majorminor}/*.a
+rm -f %{buildroot}%{_libdir}/*.a
+rm -f %{buildroot}%{_libdir}/*.la
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+rm -rf %{buildroot}
 
 
 
