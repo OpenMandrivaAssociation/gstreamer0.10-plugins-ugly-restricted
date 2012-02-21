@@ -1,5 +1,5 @@
-%define version 0.10.18
-%define release %mkrel 2
+%define version 0.10.19
+%define release %mkrel 1
 %define         _glib2          2.2
 %define major 0.10
 %define majorminor 0.10
@@ -44,7 +44,6 @@ BuildRequires: liborc-devel >= 0.4.5
 BuildRequires: libgstreamer-plugins-base-devel >= %version
 BuildRequires: libmesaglu-devel
 BuildRequires: libmad-devel
-BuildRequires: libid3tag-devel
 BuildRequires: libdvdread-devel
 %ifnarch %mips %arm
 BuildRequires: valgrind
