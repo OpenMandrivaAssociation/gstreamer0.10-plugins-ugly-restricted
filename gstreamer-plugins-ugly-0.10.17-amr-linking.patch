@@ -1,0 +1,26 @@
+--- gst-plugins-ugly-0.10.17/configure.ac.0000~	2011-01-21 13:56:28.000000000 +0100
++++ gst-plugins-ugly-0.10.17/configure.ac	2011-01-22 19:20:53.000000000 +0100
+@@ -250,9 +250,9 @@
+ AG_GST_CHECK_FEATURE(AMRNB, [amrnb library], amrnb, [
+   PKG_CHECK_MODULES(AMRNB, opencore-amrnb, HAVE_AMRNB="yes",
+       [ AG_GST_CHECK_LIBHEADER(AMRNB, opencore-amrnb,
+-		           Decoder_Interface_init, $LIBM,
++		           Decoder_Interface_init, $LIBM -lstdc++,
+ 		           opencore-amrnb/interf_dec.h,
+-			   AMRNB_LIBS="-lopencore-amrnb")
++			   AMRNB_LIBS="-lopencore-amrnb -lstdc++")
+       ])
+   AC_SUBST(AMRNB_CFLAGS)
+   AC_SUBST(AMRNB_LIBS)
+@@ -263,9 +263,9 @@
+ AG_GST_CHECK_FEATURE(AMRWB, [amrwb library], amrwbdec, [
+   PKG_CHECK_MODULES(AMRWB, opencore-amrwb, HAVE_AMRWB="yes",
+       [ AG_GST_CHECK_LIBHEADER(AMRWB, opencore-amrwb,
+-			   D_IF_decode, ,
++			   D_IF_decode, -lstdc++,
+ 			   opencore-amrwb/dec_if.h,
+-			   AMRWB_LIBS="-lopencore-amrwb")
++			   AMRWB_LIBS="-lopencore-amrwb -lstdc++")
+       ])
+   AC_SUBST(AMRWB_CFLAGS)
+   AC_SUBST(AMRWB_LIBS)
