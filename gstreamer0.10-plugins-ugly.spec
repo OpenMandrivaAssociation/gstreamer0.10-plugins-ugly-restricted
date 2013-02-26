@@ -30,11 +30,11 @@
 Summary:	GStreamer Streaming-media framework plug-ins
 Name:		%{bname}-plugins-ugly
 Version:	0.10.19
-Release:	1%{?extrarelsuffix}
+Release:	2%{?extrarelsuffix}
 License:	LGPLv2+
 Group:		Sound
 URL:		http://gstreamer.freedesktop.org/
-Source:		http://gstreamer.freedesktop.org/src/gst-plugins-ugly/gst-plugins-ugly-%{version}.tar.xz
+Source0:	http://gstreamer.freedesktop.org/src/gst-plugins-ugly/gst-plugins-ugly-%{version}.tar.xz
 Patch0:		gstreamer-plugins-ugly-0.10.17-amr-linking.patch
 Patch1:		gst-plugins-ugly-0.10.19-opencore.patch
 Patch2:		gst-plugins-ugly-0.10.19-cdio90.patch
@@ -208,8 +208,8 @@ autoconf
 
 %build
 %configure2_5x --disable-dependency-tracking \
-  --with-package-name='ROSA %{name} package' \
-  --with-package-origin='http://www.rosalab.com/' \
+  --with-package-name='%{distribution} %{name} package' \
+  --with-package-origin='%{disturl}' \
 %if ! %{build_lame}
 	--disable-lame \
 %endif
