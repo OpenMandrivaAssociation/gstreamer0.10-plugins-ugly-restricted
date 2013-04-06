@@ -30,7 +30,7 @@
 Summary:	GStreamer Streaming-media framework plug-ins
 Name:		%{bname}-plugins-ugly
 Version:	0.10.19
-Release:	2%{?extrarelsuffix}
+Release:	3%{?extrarelsuffix}
 License:	LGPLv2+
 Group:		Sound
 URL:		http://gstreamer.freedesktop.org/
@@ -207,14 +207,13 @@ Plug-in for encoding MP2 under GStreamer.
 autoconf
 
 %build
-%configure2_5x --disable-dependency-tracking \
-  --with-package-name='%{distribution} %{name} package' \
-  --with-package-origin='%{disturl}' \
+%configure2_5x	--with-package-name='%{distribution} %{name} package' \
+		--with-package-origin='%{disturl}' \
 %if ! %{build_lame}
-	--disable-lame \
+		--disable-lame \
 %endif
 %if %{build_experimental}
-	--enable-experimental
+		--enable-experimental
 %endif
 
 %make
@@ -227,12 +226,6 @@ make check
 GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 %makeinstall_std
 
 %find_lang gst-plugins-ugly-%{majorminor}
-
-# Clean out files that should not be part of the rpm.
-# This is the recommended way of dealing with it for RH8
-rm -f %{buildroot}%{_libdir}/gstreamer-%{majorminor}/*.la
-rm -f %{buildroot}%{_libdir}/gstreamer-%{majorminor}/*.a
-rm -f %{buildroot}%{_libdir}/*.a
 
 %files -f gst-plugins-ugly-%{majorminor}.lang
 %doc AUTHORS COPYING README NEWS
