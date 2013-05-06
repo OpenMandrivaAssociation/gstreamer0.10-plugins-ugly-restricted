@@ -1,6 +1,3 @@
-%define major 0.10
-%define majorminor 0.10
-%define bname gstreamer0.10
 %define build_plf 0
 %{?_with_plf: %{expand: %%global build_plf 1}}
 %define build_experimental 0
@@ -27,30 +24,34 @@
 %define build_amrwbdec 1
 %endif
 
+%define oname	gst-plugins-ugly
+%define api	0.10
+%define bname	gstreamer%{api}
+
 Summary:	GStreamer Streaming-media framework plug-ins
 Name:		%{bname}-plugins-ugly
 Version:	0.10.19
 Release:	3%{?extrarelsuffix}
 License:	LGPLv2+
 Group:		Sound
-URL:		http://gstreamer.freedesktop.org/
-Source0:	http://gstreamer.freedesktop.org/src/gst-plugins-ugly/gst-plugins-ugly-%{version}.tar.xz
+Url:		http://gstreamer.freedesktop.org/
+Source0:	http://gstreamer.freedesktop.org/src/gst-plugins-ugly/%{oname}-%{version}.tar.xz
 Patch0:		gstreamer-plugins-ugly-0.10.17-amr-linking.patch
 Patch1:		gst-plugins-ugly-0.10.19-opencore.patch
 Patch2:		gst-plugins-ugly-0.10.19-cdio90.patch
-#gw for the pixbuf plugin
-BuildRequires:	pkgconfig(gtk+-2.0)
-BuildRequires:	pkgconfig(glib-2.0)
-BuildRequires:	pkgconfig(orc-0.4)
-BuildRequires:	pkgconfig(gstreamer-plugins-base-0.10) >= 0.10.36
-BuildRequires:	pkgconfig(glu)
-BuildRequires:	pkgconfig(mad)
-BuildRequires:	pkgconfig(id3tag)
+
+BuildRequires:	pkgconfig(check)
 BuildRequires:	pkgconfig(dvdread)
+BuildRequires:	pkgconfig(glib-2.0)
+BuildRequires:	pkgconfig(glu)
+BuildRequires:	pkgconfig(gstreamer-plugins-base-%{api})
+BuildRequires:	pkgconfig(gtk+-2.0)
+BuildRequires:	pkgconfig(id3tag)
+BuildRequires:	pkgconfig(mad)
+BuildRequires:	pkgconfig(orc-0.4)
 %ifnarch %{mips} %{arm}
 BuildRequires:	valgrind
 %endif
-BuildRequires:	pkgconfig(check)
 Provides:	%{bname}-audiosrc
 Provides:	%{bname}-audiosink
 
@@ -78,7 +79,7 @@ This package is in restricted as it violates some patents.
 Summary:	GStreamer plug-in for encoding mp3 songs using lame
 Group:		Sound
 Requires:	%{bname}-plugins
-BuildRequires:	liblame-devel >= 3.89
+BuildRequires:	lame-devel >= 3.89
 
 %description -n %{bname}-lame
 Plug-in for encoding mp3 with lame under GStreamer.
@@ -86,7 +87,7 @@ Plug-in for encoding mp3 with lame under GStreamer.
 This package is in restricted as it violates some patents.
 
 %files -n %{bname}-lame
-%{_libdir}/gstreamer-%{majorminor}/libgstlame.so
+%{_libdir}/gstreamer-%{api}/libgstlame.so
 %endif
 
 %if %{build_x264}
@@ -101,8 +102,8 @@ Plug-in for encoding H264/AVC video.
 This package is in restricted as it violates some patents.
 
 %files -n %{bname}-x264
-%{_libdir}/gstreamer-%{majorminor}/libgstx264.so
-%{_datadir}/gstreamer-%{majorminor}/presets/GstX264Enc.prs
+%{_libdir}/gstreamer-%{api}/libgstx264.so
+%{_datadir}/gstreamer-%{api}/presets/GstX264Enc.prs
 %endif
 
 %if %{build_amrnb}
@@ -118,8 +119,8 @@ Plug-in for decoding AMR-NB under GStreamer.
 This package is in restricted as it violates some patents.
 
 %files -n %{bname}-amrnb
-%{_libdir}/gstreamer-%{majorminor}/libgstamrnb.so
-%{_datadir}/gstreamer-%{majorminor}/presets/GstAmrnbEnc.prs
+%{_libdir}/gstreamer-%{api}/libgstamrnb.so
+%{_datadir}/gstreamer-%{api}/presets/GstAmrnbEnc.prs
 %endif
 
 %if %{build_amrwbdec}
@@ -135,7 +136,7 @@ Plug-in for decoding AMR-Wb under GStreamer.
 This package is in restricted as it violates some patents.
 
 %files -n %{bname}-amrwbdec
-%{_libdir}/gstreamer-%{majorminor}/libgstamrwbdec.so
+%{_libdir}/gstreamer-%{api}/libgstamrwbdec.so
 %endif
 
 ### SIDPLAY ###
@@ -149,7 +150,7 @@ BuildRequires:	sidplay-devel => 1.36.0
 Plugin for playback of C64 SID format music files
 
 %files -n %{bname}-sid
-%{_libdir}/gstreamer-%{majorminor}/libgstsid.so
+%{_libdir}/gstreamer-%{api}/libgstsid.so
 
 ### A52DEC ###
 %package -n %{bname}-a52dec
@@ -162,7 +163,7 @@ BuildRequires:	a52dec-devel >= 0.7.3
 Plugin for decoding of VOB files
 
 %files -n %{bname}-a52dec
-%{_libdir}/gstreamer-%{majorminor}/libgsta52dec.so
+%{_libdir}/gstreamer-%{api}/libgsta52dec.so
 
 %package -n %{bname}-mpeg
 Summary:	GStreamer plug-ins for MPEG video playback and encoding
@@ -174,7 +175,7 @@ BuildRequires:	pkgconfig(libmpeg2)
 Plug-ins for playing and encoding MPEG video.
 
 %files -n %{bname}-mpeg
-%{_libdir}/gstreamer-%{majorminor}/libgstmpeg2dec.so
+%{_libdir}/gstreamer-%{api}/libgstmpeg2dec.so
 
 %package -n %{bname}-cdio
 Summary:	GStreamer plug-in for audio CD playback
@@ -187,7 +188,7 @@ Conflicts:	%{bname}-plugins-good < 0.10.10
 Plug-in for audio CD playback.
 
 %files -n %{bname}-cdio
-%{_libdir}/gstreamer-%{majorminor}/libgstcdio.so
+%{_libdir}/gstreamer-%{api}/libgstcdio.so
 
 %package -n %{bname}-twolame
 Summary:	GStreamer plug-in for MP2 encoding support
@@ -199,21 +200,22 @@ BuildRequires:	pkgconfig(twolame)
 Plug-in for encoding MP2 under GStreamer.
 
 %files -n %{bname}-twolame
-%{_libdir}/gstreamer-%{majorminor}/libgsttwolame.so
+%{_libdir}/gstreamer-%{api}/libgsttwolame.so
 
 %prep
-%setup -q -n gst-plugins-ugly-%{version}
+%setup -qn %{oname}-%{version}
 %apply_patches
 autoconf
 
 %build
-%configure2_5x	--with-package-name='%{distribution} %{name} package' \
-		--with-package-origin='%{disturl}' \
+%configure2_5x \
+	--with-package-name='%{distribution} %{name} package' \
+	--with-package-origin='%{disturl}' \
 %if ! %{build_lame}
-		--disable-lame \
+	--disable-lame \
 %endif
 %if %{build_experimental}
-		--enable-experimental
+	--enable-experimental
 %endif
 
 %make
@@ -225,20 +227,20 @@ make check
 %install
 GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 %makeinstall_std
 
-%find_lang gst-plugins-ugly-%{majorminor}
+%find_lang %{oname}-%{api}
 
-%files -f gst-plugins-ugly-%{majorminor}.lang
+%files -f %{oname}-%{api}.lang
 %doc AUTHORS COPYING README NEWS
-%{_libdir}/gstreamer-%{majorminor}/libgstasf.so
-%{_libdir}/gstreamer-%{majorminor}/libgstdvdlpcmdec.so
-%{_libdir}/gstreamer-%{majorminor}/libgstdvdread.so
-%{_libdir}/gstreamer-%{majorminor}/libgstdvdsub.so
-%{_libdir}/gstreamer-%{majorminor}/libgstiec958.so
-%{_libdir}/gstreamer-%{majorminor}/libgstmad.so
-%{_libdir}/gstreamer-%{majorminor}/libgstmpegaudioparse.so
-%{_libdir}/gstreamer-%{majorminor}/libgstmpegstream.so
-%{_libdir}/gstreamer-%{majorminor}/libgstrmdemux.so
+%{_libdir}/gstreamer-%{api}/libgstasf.so
+%{_libdir}/gstreamer-%{api}/libgstdvdlpcmdec.so
+%{_libdir}/gstreamer-%{api}/libgstdvdread.so
+%{_libdir}/gstreamer-%{api}/libgstdvdsub.so
+%{_libdir}/gstreamer-%{api}/libgstiec958.so
+%{_libdir}/gstreamer-%{api}/libgstmad.so
+%{_libdir}/gstreamer-%{api}/libgstmpegaudioparse.so
+%{_libdir}/gstreamer-%{api}/libgstmpegstream.so
+%{_libdir}/gstreamer-%{api}/libgstrmdemux.so
 %if %{build_experimental}
-%{_libdir}/gstreamer-%{majorminor}/libgstsynaesthesia.so
+%{_libdir}/gstreamer-%{api}/libgstsynaesthesia.so
 %endif
 
