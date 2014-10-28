@@ -9,7 +9,7 @@
 
 ######################################33
 # Hardcode PLF build
-%define build_plf 0
+%define build_plf 1
 ######################################33
 
 %if %{build_plf}
