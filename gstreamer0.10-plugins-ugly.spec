@@ -79,6 +79,7 @@ This package is in restricted as it violates some patents.
 Summary:	GStreamer plug-in for encoding mp3 songs using lame
 Group:		Sound
 Requires:	%{bname}-plugins
+BuildRequires:	%{bname}-plugins-base
 BuildRequires:	lame-devel >= 3.89
 
 %description -n %{bname}-lame
