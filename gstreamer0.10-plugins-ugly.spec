@@ -205,7 +205,7 @@ Plug-in for encoding MP2 under GStreamer.
 
 %prep
 %setup -qn %{oname}-%{version}
-%apply_patches
+%autopatch -p1
 autoconf
 
 %build
