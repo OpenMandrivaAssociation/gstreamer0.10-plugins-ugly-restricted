@@ -34,7 +34,7 @@ Version:	0.10.19
 Release:	3%{?extrarelsuffix}
 License:	LGPLv2+
 Group:		Sound
-Url:		http://gstreamer.freedesktop.org/
+Url:		https://gstreamer.freedesktop.org/
 Source0:	http://gstreamer.freedesktop.org/src/gst-plugins-ugly/%{oname}-%{version}.tar.xz
 Patch0:		gstreamer-plugins-ugly-0.10.17-amr-linking.patch
 Patch1:		gst-plugins-ugly-0.10.19-opencore.patch
