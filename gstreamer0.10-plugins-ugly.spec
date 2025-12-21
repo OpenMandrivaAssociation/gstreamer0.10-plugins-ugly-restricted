@@ -40,6 +40,11 @@ Patch0:		gstreamer-plugins-ugly-0.10.17-amr-linking.patch
 Patch1:		gst-plugins-ugly-0.10.19-opencore.patch
 Patch2:		gst-plugins-ugly-0.10.19-cdio90.patch
 
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	pkgconfig(check)
 BuildRequires:	pkgconfig(dvdread)
 BuildRequires:	pkgconfig(glib-2.0)
